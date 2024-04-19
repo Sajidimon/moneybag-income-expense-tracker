@@ -1,39 +1,34 @@
-import { useForm } from "react-hook-form"
-import { FcGoogle } from 'react-icons/fc';
+import { FcGoogle } from "react-icons/fc";
+import { Link, useNavigate } from "react-router-dom";
 import loginimg from '../../../assets/login.png'
-import './register.css'
+import { useForm } from "react-hook-form"
 import { useContext } from "react";
 import { AuthContext } from "../../../provider/AuthProvider";
-import { Link } from "react-router-dom";
+
+const Login = () => {
 
 
-const Register = () => {
+    const { login } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
-    const { createUser } = useContext(AuthContext);
-    
-        const { register, handleSubmit, reset, formState: {errors} } = useForm();
-        
     const onSubmit = (data) => {
         console.log(data)
         const email = data.email;
         const password = data.password;
 
-        //create user with email & password;
-
-        createUser(email, password)
+        //login user with email & password;
+        login(email, password)
             .then(result => {
                 const user = result.user;
                 console.log(user)
-                if (user) {
-                    alert('Registration is successfull');
-                    reset();
-                }
-                
+                reset();
+                navigate('/')
             })
         .catch(error=>console.error(error))
 
     }
-   
+    
     return (
         <div className="md:flex">
             <div className='login-left md:w-1/2 md:min-h-screen p-20'>
@@ -45,14 +40,13 @@ const Register = () => {
             </div>
             <div>
                 <div className="login-right md:w-full m-20 text-center">
-                    <h2 className='text-3xl font-bold text-black'>Create Wallet account</h2>
-                    <p className='text-black'>Sign up below to create your Wallet account</p>
+                    <h2 className='text-3xl font-bold text-black'>Login</h2>
                     <form onSubmit={handleSubmit(onSubmit)} className="mt-5">
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text text-black">Email</span>
                             </label>
-                            <input {...register("email" )} type="email" name="email" className="input input-bordered bg-white" required />
+                            <input {...register("email")} type="email" name="email" className="input input-bordered bg-white" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
@@ -62,13 +56,13 @@ const Register = () => {
                             {errors.password && <span>Password must be greater than 6 character</span>}
                         </div>
                         <div className="form-control mt-6">
-                            <button className="btn btn-info">Register</button>
+                            <button className="btn btn-info">Log in</button>
                         </div>
                     </form>
                     <div className="divider">Or continue with</div>
                     <div className='google-icon'>
                         <FcGoogle></FcGoogle>
-                        <p>Already have account? <span className="text-orange-500 font-bold"><Link to='/login'>Log In</Link></span></p>
+                        <p>Don't have account? <span className="text-orange-500 font-bold"><Link to='/login'>Sign Up</Link></span></p>
                     </div>
                 </div>
             </div>
@@ -76,4 +70,4 @@ const Register = () => {
     );
 };
 
-export default Register;
+export default Login;
