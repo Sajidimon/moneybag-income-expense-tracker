@@ -4,15 +4,15 @@ import loginimg from '../../../assets/login.png'
 import './register.css'
 import { useContext } from "react";
 import { AuthContext } from "../../../provider/AuthProvider";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 const Register = () => {
 
     const { createUser } = useContext(AuthContext);
-    
-        const { register, handleSubmit, reset, formState: {errors} } = useForm();
-        
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const navigate = useNavigate();
+
     const onSubmit = (data) => {
         console.log(data)
         const email = data.email;
@@ -27,13 +27,14 @@ const Register = () => {
                 if (user) {
                     alert('Registration is successfull');
                     reset();
+                    navigate('/dashboard')
                 }
-                
+
             })
-        .catch(error=>console.error(error))
+            .catch(error => console.error(error))
 
     }
-   
+
     return (
         <div className="md:flex">
             <div className='login-left md:w-1/2 md:min-h-screen p-20'>
@@ -52,7 +53,7 @@ const Register = () => {
                             <label className="label">
                                 <span className="label-text text-black">Email</span>
                             </label>
-                            <input {...register("email" )} type="email" name="email" className="input input-bordered bg-white" required />
+                            <input {...register("email")} type="email" name="email" className="input input-bordered bg-white" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
