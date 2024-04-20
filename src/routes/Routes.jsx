@@ -7,6 +7,7 @@ import Dashboard from "../components/pages/dashboard/Dashboard";
 import Incomelist from "../components/pages/dashboard/incomelist/Incomelist";
 import Expenselist from "../components/pages/dashboard/expenselist/Expenselist";
 import Updateincome from "../components/layouts/update/Updateincome";
+import Updateexpense from "../components/layouts/update/Updateexpense";
 
 
 const router = createBrowserRouter([
@@ -44,6 +45,11 @@ const router = createBrowserRouter([
     {
         path: '/dashboard/expenselist',
         element: <Expenselist></Expenselist>
+    },
+    {
+        path: '/dashboard/updateexpense/:id',
+        element: <Updateexpense></Updateexpense>,
+        loader: ({params}) => fetch(`http://localhost:5000/expense/${params.id}`)
     }
 ])
 
