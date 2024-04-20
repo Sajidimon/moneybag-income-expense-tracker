@@ -12,8 +12,12 @@ import Swal from "sweetalert2";
 const Incomelist = () => {
 
     const { user } = useContext(AuthContext)
-    const [incomesuccess, setincomeSuccess] = useState(null);
+    const [incomesuccess, setincomeSuccess] = useState('');
     const [incomes, setIncomes] = useState([])
+
+    //reset;
+
+    
 
     useEffect(() => {
         fetch('http://localhost:5000/income')
@@ -25,6 +29,10 @@ const Incomelist = () => {
 
     const handleincomelist = event => {
         event.preventDefault();
+
+        setincomeSuccess('');
+
+
         const form = event.target;
         const amount = form.amount.value;
         const category = form.category.value;
@@ -41,7 +49,7 @@ const Incomelist = () => {
             axios.post('http://localhost:5000/income', incomeData)
                 .then(res => {
                     if (res.data.insertedId) {
-                        setincomeSuccess(res.data.insertedId)
+                        setincomeSuccess('Record has been Added')
                     }
 
                 })
@@ -111,7 +119,7 @@ const Incomelist = () => {
                                     <div className="form-control mt-6">
                                         <button className="btn btn-accent">Add Record</button>
                                     </div>
-                                    {incomesuccess && <p className="text-orange-500 text-center">Record has been Added</p>}
+                                    {incomesuccess && <p className="text-orange-500 text-center">{incomesuccess}</p>}
                                 </form>
                             </div>
                             <div className="modal-action">

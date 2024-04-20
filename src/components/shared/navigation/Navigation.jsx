@@ -1,12 +1,25 @@
 import { useContext } from "react";
 import { SlLogout } from "react-icons/sl";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../provider/AuthProvider";
 
 
 const Navigation = () => {
 
-    const { user } = useContext(AuthContext);
+    const { user, logout } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+
+
+    const handleLogout = () => {
+        logout()
+            .then(() => {
+                navigate('/login');
+            })
+
+            .catch(error => console.error(error))
+    }
+
     return (
         <div>
             <div>
@@ -22,7 +35,14 @@ const Navigation = () => {
                     <div className="flex-none">
                         <div className="">
                             <ul className="">
-                                { user && <Link to='/dashboard/expenselist'><li><button className="btn btn-sm text-white"><SlLogout></SlLogout>Logout</button></li></Link>}
+                                {
+                                    user ?  <li>
+                                        <button onClick={handleLogout} className="btn btn-sm text-white"><SlLogout></SlLogout>Logout</button>
+                                    </li> : <p></p>
+                                }
+                                
+                                   
+                                
                             </ul>
                         </div>
                     </div>
