@@ -1,8 +1,8 @@
-import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 import loginimg from '../../../assets/login.png'
 import { useContext } from "react";
 import { AuthContext } from "../../../provider/AuthProvider";
+import Sociallogin from "../../sociallogin/Sociallogin";
 
 const Login = () => {
 
@@ -60,10 +60,8 @@ const Login = () => {
                         </div>
                     </form>
                     <div className="divider">Or continue with</div>
-                    <div className='google-icon'>
-                        <FcGoogle></FcGoogle>
-                        <p>Do not have account? <span className="text-orange-500 font-bold"><Link to='/login'>Sign Up</Link></span></p>
-                    </div>
+                    <Sociallogin></Sociallogin>
+                    <p>Do not have account? <span className="text-orange-500 font-bold"><Link to='/register'>Sign Up</Link></span></p>
                 </div>
             </div>
         </div>

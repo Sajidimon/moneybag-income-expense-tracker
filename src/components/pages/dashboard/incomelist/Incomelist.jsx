@@ -15,15 +15,13 @@ const Incomelist = () => {
     const [incomesuccess, setincomeSuccess] = useState('');
     const [incomes, setIncomes] = useState([])
 
-    //reset;
 
-    
 
     useEffect(() => {
-        fetch('http://localhost:5000/income')
+        fetch(`http://localhost:5000/income?email=${user.email}`)
             .then(res => res.json())
             .then(data => setIncomes(data))
-    }, [])
+    }, [user.email])
 
     // insert income data to db from client site;
 
@@ -41,6 +39,7 @@ const Incomelist = () => {
         if (user && user.email) {
 
             const incomeData = {
+                email: user.email,
                 amount,
                 category,
                 date

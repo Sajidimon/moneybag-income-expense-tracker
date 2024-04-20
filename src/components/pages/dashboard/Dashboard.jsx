@@ -1,24 +1,26 @@
 import { Link } from "react-router-dom";
 import Navigation from "../../shared/navigation/Navigation";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../../provider/AuthProvider";
 
 const Dashboard = () => {
 
 
     const [incomes, setIncomes] = useState([])
     const [expenses, setExpenses] = useState([])
+    const {user} = useContext(AuthContext)
 
     useEffect(() => {
-        fetch('http://localhost:5000/income')
+        fetch(`http://localhost:5000/income?email=${user.email}`)
             .then(res => res.json())
             .then(data => setIncomes(data))
-    }, [])
+    }, [user.email])
 
     useEffect(() => {
-        fetch('http://localhost:5000/expense')
+        fetch(`http://localhost:5000/expense?email=${user.email}`)
             .then(res => res.json())
             .then(data => setExpenses(data))
-    }, [])
+    }, [user.email])
 
     return (
         <div className="md:container md:mx-auto">

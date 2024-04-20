@@ -13,10 +13,10 @@ const Expenselist = () => {
 
 
     useEffect(() => {
-        fetch('http://localhost:5000/expense')
+        fetch(`http://localhost:5000/expense?email=${user.email}`)
             .then(res => res.json())
             .then(data => setExpenses(data))
-    }, [])
+    }, [user.email])
 
 
     //insert data to db;
@@ -32,6 +32,7 @@ const Expenselist = () => {
 
         if (user && user.email) {
             const expenseData = {
+                email: user.email,
                 amount,
                 category,
                 date

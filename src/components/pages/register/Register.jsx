@@ -1,10 +1,10 @@
 import { useForm } from "react-hook-form"
-import { FcGoogle } from 'react-icons/fc';
 import loginimg from '../../../assets/login.png'
 import './register.css'
 import { useContext } from "react";
 import { AuthContext } from "../../../provider/AuthProvider";
 import { Link, useNavigate } from "react-router-dom";
+import Sociallogin from "../../sociallogin/Sociallogin";
 
 
 const Register = () => {
@@ -67,10 +67,8 @@ const Register = () => {
                         </div>
                     </form>
                     <div className="divider">Or continue with</div>
-                    <div className='google-icon'>
-                        <FcGoogle></FcGoogle>
-                        <p>Already have account? <span className="text-orange-500 font-bold"><Link to='/login'>Log In</Link></span></p>
-                    </div>
+                    <Sociallogin></Sociallogin>
+                    <p>Already have account? <span className="text-orange-500 font-bold"><Link to='/login'>Log in</Link></span></p>
                 </div>
             </div>
         </div>
