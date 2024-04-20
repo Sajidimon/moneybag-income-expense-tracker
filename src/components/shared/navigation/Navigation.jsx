@@ -12,7 +12,6 @@ const Navigation = () => {
                             <Link to='/dashboard'><li><a>Dashboard</a></li></Link>
                             <Link to='/dashboard/incomelist'><li><a>All Income</a></li></Link>
                             <Link to='/dashboard/expenselist'><li><a>All Expense</a></li></Link>
-                            <Link><li><a>Accounts</a></li></Link>
                         </ul>
                     </div>
                     <div className="flex-none">
