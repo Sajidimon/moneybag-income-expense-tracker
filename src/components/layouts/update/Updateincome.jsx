@@ -6,7 +6,7 @@ const Updateincome = () => {
 
     const singleIncomedata = useLoaderData();
 
-   const { _id, amount, category, date } = singleIncomedata;
+    const { _id, amount, category, date } = singleIncomedata;
 
     const handleUpdateCoffee = event => {
         event.preventDefault();
@@ -17,7 +17,7 @@ const Updateincome = () => {
         const updateincome = { amount, category, date };
 
 
-        fetch(`http://localhost:5000/income/${_id}`, {
+        fetch(`https://moneybag-expense-server-kuigyvxfz-imon-chowdhurys-projects.vercel.app/income/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -38,8 +38,8 @@ const Updateincome = () => {
             })
 
     }
-    
-    
+
+
     return (
         <>
             <div>
@@ -68,7 +68,7 @@ const Updateincome = () => {
                                     <input type="date" name="date" defaultValue={date} className="input input-bordered bg-white" required />
                                 </div>
                                 <div className="form-control mt-6">
-                                <button className="btn btn-primary">Update Record</button>
+                                    <button className="btn btn-primary">Update Record</button>
                                 </div>
                             </form>
                         </div>

@@ -8,16 +8,16 @@ const Dashboard = () => {
 
     const [incomes, setIncomes] = useState([])
     const [expenses, setExpenses] = useState([])
-    const {user} = useContext(AuthContext)
+    const { user } = useContext(AuthContext)
 
     useEffect(() => {
-        fetch(`http://localhost:5000/income?email=${user.email}`)
+        fetch(`https://moneybag-expense-server-kuigyvxfz-imon-chowdhurys-projects.vercel.app/income?email=${user.email}`)
             .then(res => res.json())
             .then(data => setIncomes(data))
     }, [user.email])
 
     useEffect(() => {
-        fetch(`http://localhost:5000/expense?email=${user.email}`)
+        fetch(`https://moneybag-expense-server-kuigyvxfz-imon-chowdhurys-projects.vercel.app/expense?email=${user.email}`)
             .then(res => res.json())
             .then(data => setExpenses(data))
     }, [user.email])
@@ -66,12 +66,12 @@ const Dashboard = () => {
 
                                     {
                                         expenses.map((expense, index) => <tr key={expense._id}>
-                                            <th>{ index + 1}</th>
-                                            <td>{ expense.category}</td>
+                                            <th>{index + 1}</th>
+                                            <td>{expense.category}</td>
                                         </tr>)
                                     }
 
-                                    
+
                                 </tbody>
                             </table>
                         </div>

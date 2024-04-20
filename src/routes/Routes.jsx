@@ -40,7 +40,7 @@ const router = createBrowserRouter([
     {
         path: '/dashboard/updateincome/:id',
         element: <Updateincome></Updateincome>,
-        loader: ({ params }) => fetch(`http://localhost:5000/income/${params.id}`)
+        loader: ({ params }) => fetch(`https://moneybag-expense-server-kuigyvxfz-imon-chowdhurys-projects.vercel.app/income/${params.id}`)
     },
     {
         path: '/dashboard/expenselist',
@@ -49,7 +49,7 @@ const router = createBrowserRouter([
     {
         path: '/dashboard/updateexpense/:id',
         element: <Updateexpense></Updateexpense>,
-        loader: ({params}) => fetch(`http://localhost:5000/expense/${params.id}`)
+        loader: ({ params }) => fetch(`https://moneybag-expense-server-kuigyvxfz-imon-chowdhurys-projects.vercel.app/expense/${params.id}`)
     }
 ])
 
