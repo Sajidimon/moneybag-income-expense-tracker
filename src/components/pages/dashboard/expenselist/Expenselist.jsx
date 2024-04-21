@@ -13,7 +13,7 @@ const Expenselist = () => {
 
 
     useEffect(() => {
-        fetch(`https://moneybag-expense-server-kuigyvxfz-imon-chowdhurys-projects.vercel.app/expense?email=${user.email}`)
+        fetch(`https://moneybag-income-expense-tracker-server.onrender.com/expense?email=${user.email}`)
             .then(res => res.json())
             .then(data => setExpenses(data))
     }, [user.email])
@@ -38,7 +38,7 @@ const Expenselist = () => {
                 date
             }
 
-            axios.post('https://moneybag-expense-server-kuigyvxfz-imon-chowdhurys-projects.vercel.app/expense', expenseData)
+            axios.post('https://moneybag-income-expense-tracker-server.onrender.com/expense', expenseData)
                 .then(res => {
                     if (res.data.insertedId) {
                         console.log(res.data)
@@ -62,7 +62,7 @@ const Expenselist = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`https://moneybag-expense-server-kuigyvxfz-imon-chowdhurys-projects.vercel.app/expense/${id}`)
+                axios.delete(`https://moneybag-income-expense-tracker-server.onrender.com/expense/${id}`)
                     .then(res => {
                         if (res.data.deletedCount > 0) {
                             Swal.fire({

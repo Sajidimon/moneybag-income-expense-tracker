@@ -16,7 +16,7 @@ const Updateexpense = () => {
         const date = form.date.value;
         const updateExpensedata = { amount, category, date }
 
-        fetch(`https://moneybag-expense-server-kuigyvxfz-imon-chowdhurys-projects.vercel.app/expense/${_id}`, {
+        fetch(`https://moneybag-income-expense-tracker-server.onrender.com/expense/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

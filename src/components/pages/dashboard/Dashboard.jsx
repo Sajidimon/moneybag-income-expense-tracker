@@ -11,13 +11,13 @@ const Dashboard = () => {
     const { user } = useContext(AuthContext)
 
     useEffect(() => {
-        fetch(`https://moneybag-expense-server-kuigyvxfz-imon-chowdhurys-projects.vercel.app/income?email=${user.email}`)
+        fetch(`https://moneybag-income-expense-tracker-server.onrender.com/income?email=${user.email}`)
             .then(res => res.json())
             .then(data => setIncomes(data))
     }, [user.email])
 
     useEffect(() => {
-        fetch(`https://moneybag-expense-server-kuigyvxfz-imon-chowdhurys-projects.vercel.app/expense?email=${user.email}`)
+        fetch(`https://moneybag-income-expense-tracker-server.onrender.com/expense?email=${user.email}`)
             .then(res => res.json())
             .then(data => setExpenses(data))
     }, [user.email])
